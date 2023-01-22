@@ -8,6 +8,7 @@ var optionBox = document.getElementById("optionBox");
 
 option.onclick = () => {
   var newoption = document.createElement("div");
+  optionBox.style.opacity = 1;
   newoption.innerHTML = 
   `
   <div class="optionBox" id="optionBox">
@@ -21,6 +22,7 @@ option.onclick = () => {
           delete
       </span>
   </div>
+
   `
 };
 
@@ -48,7 +50,7 @@ addBTn.onclick = () => {
   </div>
 </div>
 `;
-taskBox.insertBefore(newtask, taskBox.children[3]);
+taskBox.insertBefore(newtask, taskBox.children[4]);
 };
 
 
