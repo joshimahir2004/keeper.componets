@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --yello: rgba(255, 217, 131, 1);
+  --light-yellow: rgb(255, 226, 159);
+  --light-grey: #c5c5c5;
+}
+.display{
+    display: flex;
+    align-items: center;
+}
+.task-box {
+  margin: 3rem;
+  height: 20rem;
+  width: 15rem;
+  border: 5px var(--yello) solid;
+  border-radius: 26px;
+  padding: 0.5rem;
+  padding-top: 0rem;
+  box-shadow: 1.5px 2px 5px black, 4px 2px 5px var(--yello);
+  position: relative;
+}
+legend {
+  font-weight: 900;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 1rem;
+}
+hr {
+  background-color: #c5c5c5;
+  border: none;
+  height: 1px;
+}
+.close-icon-box{
+  display: flex;
+  justify-content: flex-end;
+}
+.close{
+  background-color: var(--light-yellow);
+  border-radius: 7px;
+  margin: 0.3rem;
+  color: #565656;
+}
+.task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+}
+.task:hover{
+    padding-bottom:4px ;
+    border-bottom: 1px solid #c5c5c5;
+}
+#task-name{
+    font-size: 1rem;
+    border: none;
+    border-bottom:1px solid var(--light-grey) ;
+}
+#task-name:focus {
+    outline: none;
+  }
+input[type="checkbox"]{
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid hsl(0, 0%, 85%);
+  border-radius: 1px; 
+  margin-right: 0.5rem;
+}
+.add-box{
+margin:1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.add{
+    bottom: 10;
+    color: #3c3c3c;
+}
+.material-symbols-outlined:active{
+   transform: translateY(2px);
+   transition: .2s;
+}
+.material-symbols-outlined{
+    cursor: pointer;
+}
+.optionBox{
+    display: flex;
+    position: absolute;
+    left: 100;
+    background-color: rgba(255, 226, 159, 0.555);
+    justify-content: space-around;
+    width: 7rem;
+    padding: .3rem;
+    border-radius: 6px;
+    left: 45%;
+    bottom: 90%;
+    opacity: 0;
+}
+.optionBox span{
+    color: rgb(53, 53, 53);
+    border: 1px solid black;
+  
+}
+.optionBox span:hover .optionBox{
+    opacity: 1;
+}
+.conainter{
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  grid-template-columns: auto auto auto auto;
+}

@@ -1,0 +1,561 @@
+// LINKS
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+// Variables
+:root {
+  --clr-1: #ffffff;
+  --clr-2: #ffd983;
+  --clr-3: #1c1c1c;
+  --clr-4: #6caa7f;
+  --clr-5: #cccccc;
+  // dark color
+}
+
+$clr1: var(--clr-1);
+$clr2: var(--clr-2);
+$clr3: var(--clr-3);
+$clr4: var(--clr-4);
+$clr5: var(--clr-5);
+$font-fam-1: "Josefin Sans", sans-serif;
+
+@mixin mobile {
+  @media (max-width: 700px) {
+    @content;
+  }
+}
+
+@mixin prim_btn {
+  padding: 0.5em 1em;
+  background-color: $clr2;
+  color: $clr4;
+  border: 2px $clr4 solid;
+  border-radius: 1rem;
+  transition: transform 100ms ease-out;
+
+  &:hover {
+    transition: border-radius 300ms ease-out;
+    border-radius: 0.5rem;
+  }
+
+  &:focus {
+    transition: border-radius 300ms ease-out;
+    border-radius: 0.5rem;
+    outline: 2px solid $clr2;
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
+}
+
+@mixin second_btn {
+  padding: 0.5em 1em;
+  background-color: $clr4;
+  color: $clr2;
+  border: 2px $clr4 solid;
+  border-radius: 1rem;
+  transition: background-color 100ms ease-out;
+  transition: border-radius 300ms ease-out;
+
+  &:hover {
+    border-radius: 0.5rem;
+  }
+
+  &:focus {
+    transition: border-radius 300ms ease-out;
+    border-radius: 0.5rem;
+    outline: 2px solid $clr2;
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
+}
+
+@mixin icon_btn($clr, $clrH) {
+  border: none;
+  background-color: #00000000;
+  color: $clr;
+  transition: color 100ms ease;
+
+  &:hover,
+  &:focus {
+    color: $clrH;
+  }
+}
+// Default style
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-fam-1;
+  color: $clr3;
+  transition: background-color 300ms ease-out;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  margin: 0;
+}
+::-webkit-scrollbar-track {
+  background-color: $clr4;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $clr2;
+  border-radius: 1rem;
+  border: 1px solid $clr4;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+button {
+  text-transform: capitalize;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.active_nav {
+  a {
+    color: $clr4;
+    font-weight: bold;
+
+    @include mobile() {
+      text-decoration: underline;
+    }
+  }
+}
+
+.mobile-only {
+  display: none;
+
+  @include mobile() {
+    display: block;
+  }
+}
+
+.checked {
+  .item_text {
+    span {
+      color: $clr5;
+      text-decoration: line-through;
+    }
+  }
+
+  .item_btns {
+    .item_edit_btn {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+// element style
+
+.nav_bar {
+  width: 100vw;
+  height: 3rem;
+  padding: 0.25rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $clr2;
+  overflow: hidden;
+
+  .left_nav {
+    display: flex;
+    align-items: center;
+    img {
+      padding: 0.25rem;
+      margin-right: 0.5rem;
+      background-color: $clr3;
+      border-radius: 50%;
+    }
+  }
+
+  .wrap {
+    display: flex;
+    align-items: center;
+
+    @include mobile() {
+      width: 75%;
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      background-color: $clr2;
+      z-index: 999;
+
+      transform: translateX(100%);
+
+      transition: transform 500ms cubic-bezier(0.86, -0.03, 0.61, 0.78);
+    }
+    .center_nav {
+      margin-right: 8rem;
+      @include mobile() {
+        margin: 0;
+        margin-bottom: 2rem;
+      }
+      ul {
+        display: flex;
+        align-items: center;
+
+        @include mobile() {
+          flex-flow: column nowrap;
+          li {
+            margin: 0.5rem;
+            font-size: 1.5rem;
+          }
+        }
+
+        li {
+          margin-right: 2rem;
+          a {
+            text-transform: capitalize;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .nav_right {
+      @include mobile() {
+        width: 85%;
+        display: flex;
+        flex-flow: column nowrap;
+
+        button {
+          margin-bottom: 1rem;
+          font-size: 1rem;
+        }
+      }
+      .nav_theme_toggle {
+        @include prim_btn();
+      }
+      .nav_add_btn {
+        @include second_btn();
+      }
+
+      .close-menu-btn {
+        @include prim_btn();
+      }
+    }
+  }
+
+  .menu-btn {
+    @include icon_btn($clr4, $clr4);
+  }
+}
+
+.container {
+  height: calc(100vh - 3rem);
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
+  align-items: flex-start;
+  background-color: $clr1;
+  overflow-x: auto;
+
+  .card {
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    border: 1px solid $clr5;
+    border-radius: 1rem;
+    background-color: $clr1;
+
+    animation: slide_in 500ms ease-out forwards;
+
+    &:hover {
+      box-shadow: 0 0 1rem $clr3;
+    }
+
+    &:focus {
+      outline: 2px solid $clr4;
+    }
+
+    .card_heading {
+      margin-bottom: 0.25rem;
+      font-size: 1.25rem;
+    }
+
+    .card_sub_heading {
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.25rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-bottom: 2px solid $clr2;
+      color: $clr4;
+    }
+
+    .card_item_list {
+      min-height: 200px;
+      max-height: 300px;
+      margin-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 2px;
+        margin: 0;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: $clr1;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $clr5;
+      }
+
+      .list_item {
+        margin: 0.225rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 0.25rem;
+
+        &:hover,
+        &:focus {
+          .item_btns {
+            .item_cancel_btn,
+            .item_add_btn,
+            .item_edit_btn {
+              display: block;
+            }
+
+            .item_cancel_btn {
+              &:hover {
+                animation: shake_x 100ms ease-out forwards;
+              }
+            }
+          }
+        }
+
+        & > * > * {
+          margin-right: 0.5rem;
+        }
+
+        .item_text {
+          padding: 0.255rem;
+          font-size: 0.9rem;
+          font-weight: 400;
+          display: flex;
+          align-items: flex-start;
+          cursor: default;
+          .item_check {
+            cursor: pointer;
+          }
+
+          span {
+            inline-size: 140px;
+            overflow-wrap: break-word;
+            &:focus {
+              outline: none;
+              border-bottom: 1px solid $clr5;
+            }
+          }
+        }
+        .item_btns {
+          display: flex;
+          .item_edit_btn {
+            display: none;
+            @include icon_btn($clr5, $clr4);
+            font-size: 1rem;
+            @include mobile() {
+              display: block;
+            }
+          }
+
+          .item_cancel_btn {
+            display: none;
+            @include icon_btn($clr5, #ff5e5e);
+            font-size: 1rem;
+            @include mobile() {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+    .card_delete_btn {
+      margin: 0.25rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      @include icon_btn($clr5, #ff1645);
+      background-color: $clr1;
+      border: 1px solid $clr5;
+      border-radius: 50%;
+
+      &:hover,
+      &:focus {
+        background-color: #ff1645;
+        color: whitesmoke;
+        border: 1px solid #ff1645;
+
+        animation: shake_x 150ms ease-out forwards;
+      }
+    }
+  }
+  .item_add_btn {
+    @include icon_btn($clr5, $clr4);
+    font-size: 1.5rem;
+    justify-self: baseline;
+  }
+}
+
+.card_input_box {
+  display: none;
+  justify-content: center;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: #1c1c1c64;
+  z-index: 200;
+}
+
+.box {
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  position: absolute;
+  margin-inline: auto;
+  background-color: $clr1;
+  border: 2px solid $clr5;
+  border-radius: 1rem;
+
+  animation: top_down 1s ease forwards;
+
+  @include mobile() {
+    width: 100%;
+    margin: 0;
+    border-radius: 0 0 1rem 1rem;
+    border-top: none;
+  }
+
+  & > * {
+    font-size: 1.25rem;
+  }
+
+  .inputs {
+    display: flex;
+    flex-flow: column nowrap;
+
+    input {
+      padding: 0.5rem 1rem;
+      padding-left: 0.25rem;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      background-color: $clr1;
+      border: none;
+      border-bottom: 2px solid $clr4;
+
+      &::placeholder {
+        color: $clr5;
+      }
+    }
+  }
+
+  .buttons {
+    button {
+      font-size: 1rem;
+    }
+    #ok_btn {
+      @include second_btn();
+    }
+    #cancel_btn {
+      @include prim_btn();
+    }
+  }
+}
+
+.dark_Theme {
+  --clr-1: hsl(0, 11%, 15%);
+  --clr-2: #141010;
+  --clr-3: aliceblue;
+  --clr-4: #1fdf64;
+  --clr-5: hsl(0, 0%, 40%);
+
+  .card {
+    background-color: $clr2;
+    border: none;
+
+    .card_delete_btn {
+      border: none;
+    }
+    .card_sub_heading {
+      border-bottom: 2px solid $clr5;
+    }
+  }
+}
+
+@keyframes top_down {
+  0% {
+    transform: translateY(-110%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide_in {
+  0% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes shake_x {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(15%);
+  }
+  30% {
+    transform: translateX(-15%);
+  }
+  60% {
+    transform: translateX(15%);
+  }
+  90% {
+    transform: translateX(-15%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
